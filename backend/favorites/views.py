@@ -14,7 +14,7 @@ def favorite_views(request):
         try:
             favorites = Favorite.objects.filter(user=request.user)
         except ObjectDoesNotExist:
-            return Response({"error":"No favorites found for that user."})
+            return Response({"No favorites found for that user."}, status=status.HTTP_204_NO_CONTENT)
         serializer = FavoriteSerializer(favorites, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == "POST":
