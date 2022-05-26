@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from favorites.models import Favorite
 from favorites.serializers import FavoriteSerializer
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -22,3 +23,10 @@ def favorite_views(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def favorite_delete(request, pk):
+    favorite = get_object_or_404(Favorite, pk=pk)
+    favorite.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
