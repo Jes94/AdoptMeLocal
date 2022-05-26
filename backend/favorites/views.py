@@ -6,7 +6,7 @@ from favorites.models import Favorite
 from favorites.serializers import FavoriteSerializer
 from django.core.exceptions import ObjectDoesNotExist
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def favorite_views(request):
     if request.method == "GET":
@@ -16,4 +16,9 @@ def favorite_views(request):
             return Response({"error":"No favorites found for that user."})
         serializer = FavoriteSerializer(favorites, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+    elif request.method == "POST":
+        serializer = FavoriteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
