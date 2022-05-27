@@ -10,9 +10,12 @@ const Navbar = () => {
   return (
     <div className="navBar">
       <ul>
+        <li>
+          <button onClick={() => navigate("/favorites")}>Favorites</button>
+        </li>
         <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>React/Django JWT</b>
+          <Link to="/" style={{ textDecoration: "none"}}>
+            <h4><span style={{color:"black"}}>Adopt</span><span style={{color:"green"}}>Me</span><span style={{color:"black"}}>Local</span></h4>
           </Link>
         </li>
         <li>
