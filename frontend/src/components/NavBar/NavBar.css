@@ -11,13 +11,13 @@ li {
 .navBar {
   background: transparent;
   color: white;
-  margin-bottom: 2rem;
-  padding: 1.5rem 2rem;
+  margin-bottom: 1rem;
+  padding: 1.5rem 2rem 0rem 0rem;
 }
 
 .navBar button {
   background: black;
-  border: 2px solid white;
+  border: 2px solid black;
   color: white;
   padding: 0.4rem 0.5rem;
 }
