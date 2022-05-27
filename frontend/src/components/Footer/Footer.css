@@ -2,8 +2,33 @@ footer {
   position: fixed;
   bottom: 0;
   font-size: 1.2rem;
-  left: 0;
-  padding: 1rem;
+  left: 1;
+  padding: 1rem 2rem;
   text-align: center;
   width: 100%;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+li {
+  font-size: 1.25rem;
+}
+
+.footer button {
+  background: black;
+  border: 1px solid white;
+  color: white;
+  max-height: 4rem;
+  max-width: 15rem;
+  padding: 0.4rem 0.5rem;
+}
+
+.footer button:hover {
+  background: white;
+  color: green;
+  cursor: pointer;
 }
