@@ -7,11 +7,7 @@ import { ID } from "../../local_id";
 const HomePage = () => {
 
   const [user] = useAuth();
-  const [accessToken, setAccessToken] = useState("");
-
-  useEffect(() => {
-    getAuth();
-  }, []);
+  const [accessToken, setAccessToken] = useState([]);
 
   const getAuth = async () => {
     try {
@@ -20,15 +16,17 @@ const HomePage = () => {
           'Content-Type': `application/x-www-form-urlencoded`
         }
       });
-      setAccessToken(response.data.access_token)
-      console.log(accessToken)
+      accessToken.push(response.data.access_token)
+      console.log(response.data)
     }
     catch(error){
       console.log(error.message)
     }
   };
 
-
+  useEffect(() => {
+    getAuth();
+  }, []);
 
   return (
     <div className="container">
