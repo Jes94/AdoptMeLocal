@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { KEY } from "../../local_key";
 import { ID } from "../../local_id";
+import { Col, Row } from "react-bootstrap";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import "./HomePage.css";
 
 const HomePage = () => {
 
-  const [user] = useAuth();
-  const [accessToken, setAccessToken] = useState([]);
+  const [accessToken, setAccessToken] = useState("");
+  const [results, setResults] = useState({})
 
   const getAuth = async () => {
     try {
@@ -16,7 +18,7 @@ const HomePage = () => {
           'Content-Type': `application/x-www-form-urlencoded`
         }
       });
-      accessToken.push(response.data.access_token)
+      setAccessToken(response.data.access_token)
       console.log(response.data)
     }
     catch(error){
@@ -24,13 +26,37 @@ const HomePage = () => {
     }
   };
 
+  const getResults = async (props) => {
+    try {
+      let response = await axios.get(`https://api.petfinder.com/v2/animals?type=${props.animalType}&location=${props.zipCode}&distance=50`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      setResults(response.data)
+      console.log(response.data)
+    }
+    catch(error){
+      console.log(error.message)
+    }
+  }
+
   useEffect(() => {
     getAuth();
   }, []);
 
   return (
     <div className="container">
-      <h1>Home Page for {user.username}!</h1>
+      <Row>
+      <Col></Col>
+      <Col>
+      <img src="https://i.imgur.com/5u4ATsD.jpeg" alt="Cat and Dog" style={{"maxHeight":"25rem", "maxWidth":"25rem", "alignContent":"center"}}></img>
+      </Col>
+      <Col></Col>
+      </Row>
+      <Row>
+        <SearchBar searchParams={getResults}/>
+      </Row>
     </div>
   );
 };
