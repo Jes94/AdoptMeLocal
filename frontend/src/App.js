@@ -22,7 +22,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 function App() {
 
   const [accessToken, setAccessToken] = useState("");
-  const [results, setResults] = useState({})
+  const [results, setResults] = useState([])
 
   const getAuth = async () => {
     try {
@@ -46,8 +46,8 @@ function App() {
           'Authorization': `Bearer ${accessToken}`
         }
       });
-      setResults(response.data)
-      console.log(response.data)
+      setResults(response.data.animals)
+      console.log("Get Request", response.data.animals)
     }
     catch(error){
       console.log(error.message)
