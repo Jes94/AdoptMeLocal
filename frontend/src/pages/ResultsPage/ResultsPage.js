@@ -4,7 +4,10 @@ import './ResultsPage.css'
 
 const ResultsPage = ({ results }) => {
     return (
-        <div className="resultsDisplay"><ListAnimals animals={results}/></div>
+        <div className="container">
+        <h2>Results</h2>
+        <div className="resultsContainer"><ListAnimals animals={results}/></div>
+        </div>
     )
 }
 
