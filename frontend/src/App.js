@@ -65,9 +65,7 @@ function App() {
         <Route
           path="/"
           element={
-            <PrivateRoute>
               <HomePage getResults={getResults}/>
-            </PrivateRoute>
           }
         />
         <Route path="/results" element={<ResultsPage results={results}/>}/>
