@@ -1,0 +1,16 @@
+.resultsContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 10px;
+    grid-auto-rows: minmax(100px, auto);
+    padding-bottom: 50px;
+    margin-left: 2rem;
+    text-align: left;
+}
+img{
+    max-width: 18rem;
+    max-height: 10rem;
+}
+h2{
+    text-align: center;
+}
