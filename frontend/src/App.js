@@ -17,7 +17,7 @@ import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 
 // Util Imports
-import PrivateRoute from "./utils/PrivateRoute";
+// import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
 
@@ -41,14 +41,27 @@ function App() {
 
   const getResults = async (props) => {
     try {
-      let response = await axios.get(`https://api.petfinder.com/v2/animals?type=${props.animalType}&location=${props.zipCode}&distance=50`, {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
-        }
-      });
-      setResults(response.data.animals)
-      console.log("Get Request", response.data.animals)
-    }
+      let apiUrl = `https://api.petfinder.com/v2/animals?type=${props.animalType}&location=${props.zipCode}&distance=50&status=adoptable&limit=100`
+      const kidsApi = `&good_with_children=${props.kids}`
+      const pottyApi = `&house_trained=${props.houseTrained}`
+      const neuteredApi = `&spayed_neutered=${props.spayedNeutered}`
+      if(props.kids !== ""){
+        apiUrl += kidsApi
+      }
+      if(props.houseTrained !== ""){
+        apiUrl += pottyApi
+      }
+      if(props.spayedNeutered !== ""){
+        apiUrl += neuteredApi
+      }
+        let response = await axios.get(`${apiUrl}`, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
+        setResults(response.data.animals)
+        console.log("Get Request", response.data.animals)
+      }
     catch(error){
       console.log(error.message)
     }
