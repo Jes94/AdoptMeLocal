@@ -11,7 +11,11 @@ const Navbar = () => {
     <div className="navBar">
       <ul>
         <li>
+          {user ? (
           <button onClick={() => navigate("/favorites")}>Favorites</button>
+          ): (
+            <p></p>
+          )}
         </li>
         <li className="brand">
           <Link to="/" style={{ textDecoration: "none"}}>
