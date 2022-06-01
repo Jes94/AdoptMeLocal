@@ -10,8 +10,8 @@ const ListAnimals = ({ animals }) => {
                     <Card style={{ width: '18rem', height: '21rem'}} key={animal.id}>
                         <Card.Img varient="top" key={animal.id} src={animal.photos[0].medium} alt={animal.name}/>
                         <Card.Body>
-                            <Card.Title style={{overflow:'hidden', 'font-size':'medium'}}>{animal.name}</Card.Title>
-                            <Card.Text style={{overflow:'hidden', 'font-size':'smaller'}}>{animal.description}</Card.Text>
+                            <Card.Title style={{overflow:'hidden', 'fontSize':'medium'}}>{animal.name}</Card.Title>
+                            <Card.Text style={{overflow:'hidden', 'fontSize':'smaller'}}>{animal.description}</Card.Text>
                         </Card.Body>
                         <Card.Footer>More Info</Card.Footer>
                     </Card>

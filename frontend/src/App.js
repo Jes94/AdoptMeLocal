@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { KEY } from "./local_key";
 import { ID } from "./local_id";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 
 // Pages Imports
@@ -23,6 +24,7 @@ function App() {
 
   const [accessToken, setAccessToken] = useState("");
   const [results, setResults] = useState([])
+  const navigate = useNavigate()
 
   const getAuth = async () => {
     try {
@@ -61,6 +63,12 @@ function App() {
         });
         setResults(response.data.animals)
         console.log("Get Request", response.data.animals)
+        if(response.data.animals.length === 0){
+          alert("No results found.")
+        }
+        else{
+        navigate("/results")
+      }
       }
     catch(error){
       console.log(error.message)

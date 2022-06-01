@@ -1,7 +1,6 @@
 import { useState } from "react"
 import "./SearchBar.css";
 import { Col, Row, Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
 const SearchBar = (props) => {
     const [animalType, setAnimalType] = useState("dog");
@@ -10,12 +9,9 @@ const SearchBar = (props) => {
     const [houseTrained, setHouseTrained] = useState("");
     const [spayedNeutered, setSpayedNeutered] = useState("");
 
-    const navigate = useNavigate();
-
     const handleSubmit = (event) => {
         event.preventDefault();
         props.searchParams({zipCode: zipCode, animalType: animalType, kids: goodWithKids, houseTrained: houseTrained, spayedNeutered: spayedNeutered})
-        navigate("/results")
     };
 
     const toggleKids = () => {
