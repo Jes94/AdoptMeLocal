@@ -1,0 +1,12 @@
+.resultsDisplay{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    margin-left: 7rem;
+    padding-bottom: 50px;
+}
+img{
+    max-width: 20rem;
+    max-height: 20rem;
+}
