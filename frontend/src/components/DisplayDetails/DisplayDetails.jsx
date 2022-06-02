@@ -1,5 +1,6 @@
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import CommentList from "../CommentList/CommentList";
 
 const DisplayDetails = (animalDetails) => {
     const animal = animalDetails.animalDetails
@@ -8,6 +9,10 @@ const DisplayDetails = (animalDetails) => {
     const [kidFriendly, setKidFriendly] = useState("")
     const [dogFriendly, setDogFriendly] = useState("")
     const [catFriendly, setCatFriendly] = useState("")
+
+    useEffect(() => {
+        neuteredCheck();houseTrainedCheck();kidsCheck();dogsCheck();catsCheck();
+      }, [])
 
     const neuteredCheck = () => {
         if(animal.attributes.spayed_neutered === true){
@@ -64,7 +69,7 @@ const DisplayDetails = (animalDetails) => {
             setCatFriendly("Unknown")
         }
     }
-    const handleClick = (event) => {
+    const handleClick = () => {
         if (animal.contact.email !== null && animal.contact.phone !== null){
             alert(`email: ${animal.contact.email}    phone: ${animal.contact.phone}`)
         }
@@ -79,18 +84,12 @@ const DisplayDetails = (animalDetails) => {
         }
     }
 
-
-    useEffect(() => {
-        neuteredCheck();houseTrainedCheck();kidsCheck();dogsCheck();catsCheck();
-      }, [])
-    
-
     return(
         <div className="row">
             <h2>{animal.name}</h2>
             <div className="col-md-4">
             <img src={animal.photos[0].full} style={{width:'auto', height:'auto'}} alt={animal.name}></img>
-            <div>comments</div>
+            <div><CommentList animal_id={animal.id}/></div>
             </div>
             <div className="col-md-2">
                 <div className="row">
