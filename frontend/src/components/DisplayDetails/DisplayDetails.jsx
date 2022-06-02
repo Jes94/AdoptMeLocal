@@ -88,8 +88,12 @@ const DisplayDetails = (animalDetails) => {
         <div className="row">
             <h2>{animal.name}</h2>
             <div className="col-md-4">
+            <div className="row" style={{justifyContent:"center"}}>
             <img src={animal.photos[0].full} style={{width:'auto', height:'auto'}} alt={animal.name}></img>
+            </div>
+            <div className="row" style={{paddingTop:"1rem"}}>
             <div><CommentList animal_id={animal.id}/></div>
+            </div>
             </div>
             <div className="col-md-2">
                 <div className="row">
