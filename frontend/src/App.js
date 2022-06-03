@@ -5,6 +5,7 @@ import axios from "axios";
 import { KEY } from "./local_key";
 import { ID } from "./local_id";
 import { useNavigate } from "react-router-dom";
+// import useAuth from "./hooks/useAuth";
 import "./App.css";
 
 // Pages Imports
@@ -12,6 +13,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ResultsPage from "./pages/ResultsPage/ResultsPage";
+import AnimalDetailsPage from "./pages/AnimalDetailsPage/AnimalDetailsPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -23,8 +25,10 @@ import Footer from "./components/Footer/Footer";
 function App() {
 
   const [accessToken, setAccessToken] = useState("");
-  const [results, setResults] = useState([])
-  const navigate = useNavigate()
+  const [results, setResults] = useState([]);
+  const [animalDetails, setAnimalDetails] = useState([]);
+  const navigate = useNavigate();
+  // const [token] = useAuth();
 
   const getAuth = async () => {
     try {
@@ -34,7 +38,6 @@ function App() {
         }
       });
       setAccessToken(response.data.access_token)
-      console.log(response.data)
     }
     catch(error){
       console.log(error.message)
@@ -62,7 +65,6 @@ function App() {
           }
         });
         setResults(response.data.animals)
-        console.log("Get Request", response.data.animals)
         if(response.data.animals.length === 0){
           alert("No results found.")
         }
@@ -73,6 +75,12 @@ function App() {
     catch(error){
       console.log(error.message)
     }
+  }
+
+  const getDetails = (props) => {
+    setAnimalDetails(props.animal)
+    navigate("/details")
+
   }
 
   useEffect(() => {
@@ -89,7 +97,8 @@ function App() {
               <HomePage getResults={getResults}/>
           }
         />
-        <Route path="/results" element={<ResultsPage results={results}/>}/>
+        <Route path="/details" element={<AnimalDetailsPage animalDetails={animalDetails}/>}/>
+        <Route path="/results" element={<ResultsPage results={results} getDetails={getDetails}/>}/>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
