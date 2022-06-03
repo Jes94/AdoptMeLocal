@@ -38,7 +38,6 @@ function App() {
         }
       });
       setAccessToken(response.data.access_token)
-      console.log(response.data)
     }
     catch(error){
       console.log(error.message)
@@ -66,7 +65,6 @@ function App() {
           }
         });
         setResults(response.data.animals)
-        console.log("Get Request", response.data.animals)
         if(response.data.animals.length === 0){
           alert("No results found.")
         }
