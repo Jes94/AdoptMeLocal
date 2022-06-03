@@ -36,7 +36,7 @@ const DisplayDetails = (animalDetails) => {
             setHouseTrained("Unknown")
         }
     }
-        const kidsCheck = () => {
+    const kidsCheck = () => {
         if(animal.environment.children === true){
             setKidFriendly("True")
         }
@@ -47,7 +47,7 @@ const DisplayDetails = (animalDetails) => {
             setKidFriendly("Unknown")
         }
     }
-        const dogsCheck = () => {
+    const dogsCheck = () => {
         if(animal.environment.dogs === true){
             setDogFriendly("True")
         }
@@ -58,7 +58,7 @@ const DisplayDetails = (animalDetails) => {
             setDogFriendly("Unknown")
         }
     }
-        const catsCheck = () => {
+    const catsCheck = () => {
         if(animal.environment.cats === true){
             setCatFriendly("True")
         }
