@@ -1,6 +1,8 @@
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import CommentList from "../CommentList/CommentList";
+import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 const DisplayDetails = (animalDetails) => {
     const animal = animalDetails.animalDetails
@@ -9,6 +11,8 @@ const DisplayDetails = (animalDetails) => {
     const [kidFriendly, setKidFriendly] = useState("")
     const [dogFriendly, setDogFriendly] = useState("")
     const [catFriendly, setCatFriendly] = useState("")
+    const [contactInfo, setContactInfo] = useState(`Email: ${animal.contact.email}, Phone Number: ${animal.contact.phone}`)
+    const [user, token] = useAuth();
 
     useEffect(() => {
         neuteredCheck();houseTrainedCheck();kidsCheck();dogsCheck();catsCheck();
@@ -71,17 +75,51 @@ const DisplayDetails = (animalDetails) => {
     }
     const handleClick = () => {
         if (animal.contact.email !== null && animal.contact.phone !== null){
+            setContactInfo(`Email: ${animal.contact.email}, Phone Number: ${animal.contact.phone}`)
             alert(`email: ${animal.contact.email}    phone: ${animal.contact.phone}`)
         }
         else if(animal.contact.email !== null && animal.contact.phone === null){
+            setContactInfo(`Email: ${animal.contact.email}`)
             alert(`email: ${animal.contact.email}`)
         }
         else if(animal.contact.email === null && animal.contact.phone !== null){
+            setContactInfo(`Phone Number: ${animal.contact.phone}`)
             alert(`phone: ${animal.contact.phone}`)
         }
         else{
+            setContactInfo("No contact information was provided for this animal.")
             alert("No contact information was provided for this animal.")
         }
+    }
+    const handleAddFav = () => {
+        let animalInfo = {
+                animal_id: animal.id,
+                name: animal.name,
+                picture: animal.photos[0].full,
+                house_trained: houseTrained, 
+                breed: animal.breeds.primary, 
+                age: animal.age, 
+                neutered: neuteredStatus, 
+                kids: kidFriendly, 
+                dogs: dogFriendly, 
+                cats: catFriendly, 
+                contact: contactInfo
+        }
+        const addFav = async () => {
+        try{
+            await axios.post(`http://localhost:8000/api/favorites/`, animalInfo,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        }
+        catch (error){
+            console.log(error.message)
+        }
+        alert("Added to favorites!")
+    }
+        addFav()
     }
 
     return(
@@ -98,6 +136,7 @@ const DisplayDetails = (animalDetails) => {
             <div className="col-md-2">
                 <div className="row">
                 <button onClick={handleClick} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000"}}>Contact Info</button>
+                <button onClick={handleAddFav} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000", marginTop: "1rem"}}>Favorite</button>
                 </div>
             </div>
             <div className="col-md-6">
