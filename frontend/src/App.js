@@ -15,6 +15,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ResultsPage from "./pages/ResultsPage/ResultsPage";
 import AnimalDetailsPage from "./pages/AnimalDetailsPage/AnimalDetailsPage";
 import SheltersPage from "./pages/SheltersPage/SheltersPage";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -99,6 +100,7 @@ function App() {
               <HomePage getResults={getResults}/>
           }
         />
+        <Route path="/favorites" element={<FavoritesPage />}/>
         <Route path="/shelters" element={<SheltersPage/>}/>
         <Route path="/details" element={<AnimalDetailsPage animalDetails={animalDetails}/>}/>
         <Route path="/results" element={<ResultsPage results={results} getDetails={getDetails}/>}/>
