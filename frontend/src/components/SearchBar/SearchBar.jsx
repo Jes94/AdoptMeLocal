@@ -103,7 +103,7 @@ const SearchBar = (props) => {
                 </Col>
             </Row>
             <Row xs={'auto'} className="justify-content-center">
-            <button type="button" className="btn btn-primary btn-sm" onClick={handleSubmit}>Search</button>
+        <button type="button" className="btn btn-primary btn-sm" style={{background: "#008000", border: "#008000"}} onClick={handleSubmit}>Search</button>
             </Row>
         </Container>
     )

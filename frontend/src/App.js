@@ -14,6 +14,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ResultsPage from "./pages/ResultsPage/ResultsPage";
 import AnimalDetailsPage from "./pages/AnimalDetailsPage/AnimalDetailsPage";
+import SheltersPage from "./pages/SheltersPage/SheltersPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -65,6 +66,7 @@ function App() {
           }
         });
         setResults(response.data.animals)
+        console.log(response.data.animals)
         if(response.data.animals.length === 0){
           alert("No results found.")
         }
@@ -97,6 +99,7 @@ function App() {
               <HomePage getResults={getResults}/>
           }
         />
+        <Route path="/shelters" element={<SheltersPage/>}/>
         <Route path="/details" element={<AnimalDetailsPage animalDetails={animalDetails}/>}/>
         <Route path="/results" element={<ResultsPage results={results} getDetails={getDetails}/>}/>
         <Route path="/register" element={<RegisterPage />} />
