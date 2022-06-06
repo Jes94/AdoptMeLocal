@@ -27,7 +27,7 @@ const ListAnimals = ({animals, getDetails}) => {
                             <Card.Title style={{overflow:'hidden', 'fontSize':'medium'}}>{animal.name}</Card.Title>
                             <Card.Text style={{overflow:'hidden', 'fontSize':'smaller'}}>{animal.description}</Card.Text>
                         </Card.Body>
-                        <Card.Footer><button className="btn btn-primary btn-sm" key={animal.id} id={animal.id} onClick={handleSubmit}>More Info</button></Card.Footer>
+                        <Card.Footer><button className="btn btn-primary btn-sm" key={animal.id} id={animal.id} onClick={handleSubmit} style={{background: "#008000", border:"#008000"}}>More Info</button></Card.Footer>
                     </Card>
                 )
             }
