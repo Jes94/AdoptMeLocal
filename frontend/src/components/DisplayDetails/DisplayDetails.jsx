@@ -13,6 +13,7 @@ const DisplayDetails = (animalDetails) => {
     const [catFriendly, setCatFriendly] = useState("")
     const [contactInfo, setContactInfo] = useState(`Email: ${animal.contact.email}, Phone Number: ${animal.contact.phone}`)
     const [user, token] = useAuth();
+    const description = animal.description.replace("&amp;#39;", "'")
 
     useEffect(() => {
         neuteredCheck();houseTrainedCheck();kidsCheck();dogsCheck();catsCheck();
@@ -140,7 +141,7 @@ const DisplayDetails = (animalDetails) => {
                 </div>
             </div>
             <div className="col-md-6">
-            <div className="animal-description">{animal.description}</div>
+            <div className="animal-description">{description}</div>
             <ListGroup>
                 <ListGroupItem>Spayed/Neutered: {neuteredStatus}</ListGroupItem>
                 <ListGroupItem>House Trained: {houseTrained}</ListGroupItem>

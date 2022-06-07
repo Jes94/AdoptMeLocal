@@ -20,6 +20,22 @@ const ListAnimals = ({animals, getDetails}) => {
     return(
         animals.map((animal) => {
             if (animal.photos[0] !== undefined) {
+                if (animal.description !== null){
+                    const description = animal.description.replace("&amp;#39;", "'")
+                    const description2 = description.replace("&#039;", "'")
+                    const description3 = description2.replace("&amp;#39;", "'")
+                    const name = animal.name.replace("&#39;", "'")
+                    return (
+                        <Card style={{ width: '18rem', height: '21rem'}} key={animal.id}>
+                        <Card.Img varient="top" src={animal.photos[0].full} style={{width:'9rem', height:'9rem', marginLeft:'4.5rem'}} alt={animal.name}/>
+                        <Card.Body>
+                            <Card.Title style={{overflow:'hidden', 'fontSize':'medium'}}>{name}</Card.Title>
+                            <Card.Text style={{overflow:'hidden', 'fontSize':'smaller'}}>{description3}</Card.Text>
+                        </Card.Body>
+                        <Card.Footer><button className="btn btn-primary btn-sm" key={animal.id} id={animal.id} onClick={handleSubmit} style={{background: "#008000", border:"#008000"}}>More Info</button></Card.Footer>
+                        </Card>
+                    )
+                }
                 return ( 
                     <Card style={{ width: '18rem', height: '21rem'}} key={animal.id}>
                         <Card.Img varient="top" src={animal.photos[0].full} style={{width:'9rem', height:'9rem', marginLeft:'4.5rem'}} alt={animal.name}/>
