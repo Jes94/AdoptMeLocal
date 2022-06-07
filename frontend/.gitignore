@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+src/local_key.js
+src/local_id.js
+src/local_google_key.js
