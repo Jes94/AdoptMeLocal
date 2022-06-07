@@ -75,9 +75,6 @@ const SearchBar = (props) => {
                     <input id="zip" type="text" placeholder="Zip Code" value={zipCode} onChange={(event) => setZipCode(event.target.value)}/>
                     </div>
                 </Col>
-                {/* <Col sm={1}>
-                    <button type="button" className="btn btn-primary btn-sm" onClick={handleSubmit}>Search</button>
-                </Col> */}
             </Row>
             <Row xs={'auto'} className="justify-content-center">
                 <Col>
