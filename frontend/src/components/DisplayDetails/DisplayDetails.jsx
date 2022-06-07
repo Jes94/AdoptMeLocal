@@ -11,7 +11,7 @@ const DisplayDetails = (animalDetails) => {
     const [kidFriendly, setKidFriendly] = useState("")
     const [dogFriendly, setDogFriendly] = useState("")
     const [catFriendly, setCatFriendly] = useState("")
-    const [contactInfo, setContactInfo] = useState(`Email: ${animal.contact.email}, Phone Number: ${animal.contact.phone}`)
+    const [contactInfo, setContactInfo] = useState(`Email: ${animal.contact.email} Phone Number: ${animal.contact.phone}`)
     const [user, token] = useAuth();
     const description = animal.description.replace("&amp;#39;", "'")
 

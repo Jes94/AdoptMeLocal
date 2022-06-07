@@ -24,8 +24,7 @@ const DisplayShelters = () => {
 //     }
 
 // // Get animal shelters near users lat/lng
-// // Almost Had this working but had issues with CORS using axios, switched to Google Maps API to call but due to limited time switching to iFrame method.
-
+//
 // // Load a basic map 
 //     const { isLoaded } = useJsApiLoader({googleMapsApiKey: GKEY, libraries: ['places'],})
 

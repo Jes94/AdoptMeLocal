@@ -5,7 +5,6 @@ import axios from "axios";
 import { KEY } from "./local_key";
 import { ID } from "./local_id";
 import { useNavigate } from "react-router-dom";
-// import useAuth from "./hooks/useAuth";
 import "./App.css";
 
 // Pages Imports
@@ -21,8 +20,6 @@ import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 
-// Util Imports
-// import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
 
@@ -30,7 +27,6 @@ function App() {
   const [results, setResults] = useState([]);
   const [animalDetails, setAnimalDetails] = useState([]);
   const navigate = useNavigate();
-  // const [token] = useAuth();
 
   const getAuth = async () => {
     try {
@@ -67,7 +63,6 @@ function App() {
           }
         });
         setResults(response.data.animals)
-        console.log(response.data.animals)
         if(response.data.animals.length === 0){
           alert("No results found.")
         }
