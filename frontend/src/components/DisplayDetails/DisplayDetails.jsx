@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import CommentList from "../CommentList/CommentList";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import Alert from 'react-bootstrap/Alert'
 
 const DisplayDetails = (animalDetails) => {
     const animal = animalDetails.animalDetails
@@ -14,6 +15,7 @@ const DisplayDetails = (animalDetails) => {
     const [contactInfo, setContactInfo] = useState(`Email: ${animal.contact.email} Phone Number: ${animal.contact.phone}`)
     const [user, token] = useAuth();
     const description = animal.description.replace("&amp;#39;", "'")
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         neuteredCheck();houseTrainedCheck();kidsCheck();dogsCheck();catsCheck();
@@ -118,7 +120,7 @@ const DisplayDetails = (animalDetails) => {
         catch (error){
             console.log(error.message)
         }
-        alert("Added to favorites!")
+        setShow(true)
     }
         addFav()
     }
@@ -139,8 +141,16 @@ const DisplayDetails = (animalDetails) => {
                 <button onClick={handleClick} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000"}}>Contact Info</button>
                 { user ? (
                 <button onClick={handleAddFav} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000", marginTop: "1rem"}}>Favorite</button>
+                
                 ): (
                     <p></p>
+                )}
+                { show ? (
+                    <div className= "d-inline-block" style={{width:'11rem',height:'1rem', marginTop: "1rem", fontSize: '12px', textAlign:'left'}}>
+                <Alert variant="dark" style={{wdith: '100%', marginLeft:'-1rem', maxHeight: '3rem', overflow: 'hidden'}} onClose={() => setShow(false)} dismissible>Added to favorites!</Alert> 
+                    </div>
+                ): (
+                <p></p>
                 )}
                 </div>
             </div>
