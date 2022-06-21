@@ -3,11 +3,11 @@ import FavoriteList from "../../components/FavoriteList/FavoriteList";
 import "./FavoritesPage.css"
 
 
-const FavoritesPage = () => {
+const FavoritesPage = ({getShelterInfo}) => {
     return (
         <div className="container">
             <h4>Favorites</h4>
-            <div className="favoritesContainer"><FavoriteList /></div>
+            <div className="favoritesContainer"><FavoriteList getShelterInfo={getShelterInfo}/></div>
         </div>
     )
 }

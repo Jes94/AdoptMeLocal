@@ -15,6 +15,7 @@ import ResultsPage from "./pages/ResultsPage/ResultsPage";
 import AnimalDetailsPage from "./pages/AnimalDetailsPage/AnimalDetailsPage";
 import SheltersPage from "./pages/SheltersPage/SheltersPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import DirectionsPage from "./pages/DirectionsPage/DirectionsPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -26,6 +27,7 @@ function App() {
   const [accessToken, setAccessToken] = useState("");
   const [results, setResults] = useState([]);
   const [animalDetails, setAnimalDetails] = useState([]);
+  const [shelterInfo, setShelterInfo] = useState({})
   const navigate = useNavigate();
 
   const getAuth = async () => {
@@ -63,6 +65,7 @@ function App() {
           }
         });
         setResults(response.data.animals)
+        console.log(response.data.animals)
         if(response.data.animals.length === 0){
           alert("No results found.")
         }
@@ -81,6 +84,27 @@ function App() {
 
   }
 
+  const getShelterInfo = async (id) => {
+    try {
+        let response = await axios.get(`https://api.petfinder.com/v2/organizations/${id}`, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
+        console.log(response.data)
+        setShelterInfo(response.data.organization)
+        if (response.data.organization.address.address1 !== null){
+          navigate("/directions")
+        }
+        else{
+          alert("No physical address was found for this shelter")
+        }
+    }
+    catch(error){
+        console.log(error.message)
+    }
+}
+
   useEffect(() => {
     getAuth();
   }, []);
@@ -95,7 +119,8 @@ function App() {
               <HomePage getResults={getResults}/>
           }
         />
-        <Route path="/favorites" element={<FavoritesPage />}/>
+        <Route path="/directions" element={<DirectionsPage shelterInfo={shelterInfo}/>}/>
+        <Route path="/favorites" element={<FavoritesPage getShelterInfo={getShelterInfo}/>}/>
         <Route path="/shelters" element={<SheltersPage/>}/>
         <Route path="/details" element={<AnimalDetailsPage animalDetails={animalDetails}/>}/>
         <Route path="/results" element={<ResultsPage results={results} getDetails={getDetails}/>}/>

@@ -106,7 +106,8 @@ const DisplayDetails = (animalDetails) => {
                 kids: kidFriendly, 
                 dogs: dogFriendly, 
                 cats: catFriendly, 
-                contact: contactInfo
+                contact: contactInfo,
+                shelter: animal.organization_id
         }
         const addFav = async () => {
         try{
