@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 
-const FavoriteList = () => {
+
+const FavoriteList = ({ getShelterInfo }) => {
     const [user, token] = useAuth();
     const [favorites, setFavorites] = useState([])
 
@@ -43,6 +44,12 @@ const FavoriteList = () => {
         }
     }
 
+    const handleClick = (event) => {
+        event.preventDefault();
+        let id = event.target.value
+        getShelterInfo(id)
+    }
+
     return(
         favorites.map((animal, index) => {
             return(
@@ -63,6 +70,7 @@ const FavoriteList = () => {
                         <Card.Footer>
                             <button className="btn btn-primary btn-sm" value={animal.contact} onClick={() => {alert(animal.contact)}} style={{background: "#008000", border:"#008000"}}>Contact Info</button>
                             <button className="btn btn-primary btn-sm" value={animal.animal_id} onClick={() => {delFavorite(animal.id)}} style={{background: "#008000", border:"#008000", marginLeft:"1rem"}}>Delete</button>
+                            <button className="btn btn-primary btn-sm" value={animal.shelter}onClick={handleClick} style={{background: "#008000", border:"#008000", marginLeft:"1rem", maxWidth:"5rem"}}>Directions</button>
                         </Card.Footer>
                     </Card>
 
