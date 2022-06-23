@@ -93,7 +93,8 @@ function App() {
         });
         console.log(response.data)
         setShelterInfo(response.data.organization)
-        if (response.data.organization.address.address1 !== null){
+        let poFilter = "PO"
+        if (response.data.organization.address.address1 !== null && !response.data.organization.address.address1.includes(poFilter)){
           navigate("/directions")
         }
         else{

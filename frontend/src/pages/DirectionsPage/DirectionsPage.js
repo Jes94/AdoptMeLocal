@@ -90,6 +90,7 @@ const DirectionsPage = ({ shelterInfo }) => {
                     <button type='submit' className="btn btn-primary btn-sm" onClick={calculateRoute} style={{background: "#008000", border: "#008000", maxWidth:"3rem", maxHeight:"30px", marginLeft: "5px"}}>Go</button>
                     </div>
                 </div>
+                <div><p>{shelterInfo.address.address1}, {shelterInfo.address.city}, {shelterInfo.address.state}</p></div>
                 {directions ? (
                 <div className="row-group" style={{justifyContent:"center", marginBottom: "1rem"}}>
                     <p>Distance: {distance}     Duration: {tripLength}</p>
