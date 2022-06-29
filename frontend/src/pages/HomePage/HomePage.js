@@ -10,7 +10,7 @@ const HomePage = ({ getResults }) => {
       <Row>
       <Col></Col>
       <Col>
-      <img src="https://i.imgur.com/5u4ATsD.jpeg" alt="Cat and Dog" style={{"maxHeight":"25rem", "maxWidth":"25rem", "alignContent":"center"}}></img>
+      <img src="https://i.imgur.com/5u4ATsD.jpeg" alt="Cat and Dog" className="mainImg"></img>
       </Col>
       <Col></Col>
       </Row>

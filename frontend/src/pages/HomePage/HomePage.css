@@ -1,4 +1,5 @@
 .mainImg {
-    max-width: 20%;
-    max-height: 20%;
+    max-width: 50vw;
+    max-height: 50vh;
+    align-content: center;
 }
