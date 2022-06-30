@@ -14,7 +14,7 @@ const DisplayDetails = (animalDetails) => {
     const [catFriendly, setCatFriendly] = useState("")
     const [contactInfo, setContactInfo] = useState(`Email: ${animal.contact.email} Phone Number: ${animal.contact.phone}`)
     const [user, token] = useAuth();
-    const description = animal.description.replace("&amp;#39;", "'")
+    const description = animal.description.replace(/&#39;|&amp;#39;|&#039;/g, "'")
     const [show, setShow] = useState(false)
 
     useEffect(() => {
