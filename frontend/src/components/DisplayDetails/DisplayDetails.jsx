@@ -4,6 +4,7 @@ import CommentList from "../CommentList/CommentList";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import Alert from 'react-bootstrap/Alert'
+import DisplayContact from "../DisplayContact/DisplayContact";
 
 const DisplayDetails = (animalDetails) => {
     const animal = animalDetails.animalDetails
@@ -18,7 +19,7 @@ const DisplayDetails = (animalDetails) => {
     const [show, setShow] = useState(false)
 
     useEffect(() => {
-        neuteredCheck();houseTrainedCheck();kidsCheck();dogsCheck();catsCheck();
+        neuteredCheck();houseTrainedCheck();kidsCheck();dogsCheck();catsCheck();contactCheck();
       }, [])
 
     const neuteredCheck = () => {
@@ -76,22 +77,19 @@ const DisplayDetails = (animalDetails) => {
             setCatFriendly("Unknown")
         }
     }
-    const handleClick = () => {
+    const contactCheck = () => {
         if (animal.contact.email !== null && animal.contact.phone !== null){
-            setContactInfo(`Email: ${animal.contact.email}, Phone Number: ${animal.contact.phone}`)
-            alert(`email: ${animal.contact.email}    phone: ${animal.contact.phone}`)
+            setContactInfo(`Email: ${animal.contact.email} Phone Number: ${animal.contact.phone}`)
+
         }
         else if(animal.contact.email !== null && animal.contact.phone === null){
             setContactInfo(`Email: ${animal.contact.email}`)
-            alert(`email: ${animal.contact.email}`)
         }
         else if(animal.contact.email === null && animal.contact.phone !== null){
             setContactInfo(`Phone Number: ${animal.contact.phone}`)
-            alert(`phone: ${animal.contact.phone}`)
         }
         else{
             setContactInfo("No contact information was provided for this animal.")
-            alert("No contact information was provided for this animal.")
         }
     }
     const handleAddFav = () => {
@@ -139,7 +137,8 @@ const DisplayDetails = (animalDetails) => {
             </div>
             <div className="col-md-2">
                 <div className="row">
-                <button onClick={handleClick} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000"}}>Contact Info</button>
+                {/* <button onClick={handleClick} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000"}}>Contact Info</button> */}
+                <DisplayContact key={animal.id} contact={contactInfo} />
                 { user ? (
                 <button onClick={handleAddFav} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000", marginTop: "1rem"}}>Favorite</button>
                 
