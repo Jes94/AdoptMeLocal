@@ -137,7 +137,6 @@ const DisplayDetails = (animalDetails) => {
             </div>
             <div className="col-md-2">
                 <div className="row">
-                {/* <button onClick={handleClick} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000"}}>Contact Info</button> */}
                 <DisplayContact key={animal.id} contact={contactInfo} />
                 { user ? (
                 <button onClick={handleAddFav} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000", marginTop: "1rem"}}>Favorite</button>
