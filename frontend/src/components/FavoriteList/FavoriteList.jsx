@@ -68,7 +68,7 @@ const FavoriteList = ({ getShelterInfo }) => {
                             </ListGroup>
                         </Card.Body>
                         <Card.Footer>
-                            <DisplayContact key={animal.animal_id} contact={animal.contact}/>
+                            <DisplayContact key={animal.animal_id} contactEmail={animal.contactEmail} contactNumber={animal.contactNumber}/>
                             <button className="btn btn-primary btn-sm" value={animal.animal_id} onClick={() => {delFavorite(animal.id)}} style={{background: "#008000", border:"#008000", marginLeft:"1rem"}}>Delete</button>
                             <button className="btn btn-primary btn-sm" value={animal.shelter}onClick={handleClick} style={{background: "#008000", border:"#008000", marginLeft:"1rem", maxWidth:"5rem"}}>Directions</button>
                         </Card.Footer>

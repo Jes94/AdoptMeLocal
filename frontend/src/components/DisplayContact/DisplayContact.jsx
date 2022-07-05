@@ -1,6 +1,4 @@
-// Bootstrap Imports
 import { Offcanvas } from "react-bootstrap"
-// React Imports
 import { useState } from "react"
 
 
@@ -17,7 +15,7 @@ const DisplayContact = (props) => {
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Contact Information</Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body>{props.contact}</Offcanvas.Body>
+            <Offcanvas.Body>{props.contactEmail}<br></br>{props.contactNumber}</Offcanvas.Body>
         </Offcanvas>
         </>
     );

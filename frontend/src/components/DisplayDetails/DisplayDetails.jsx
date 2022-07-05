@@ -13,7 +13,8 @@ const DisplayDetails = (animalDetails) => {
     const [kidFriendly, setKidFriendly] = useState("")
     const [dogFriendly, setDogFriendly] = useState("")
     const [catFriendly, setCatFriendly] = useState("")
-    const [contactInfo, setContactInfo] = useState(`Email: ${animal.contact.email} Phone Number: ${animal.contact.phone}`)
+    const [contactEmail, setContactEmail] = useState(`Email: ${animal.contact.email}`)
+    const [contactNumber, setContactNumber] = useState(`Phone Number: ${animal.contact.phone}`)
     const [user, token] = useAuth();
     const description = animal.description.replace(/&#39;|&amp;#39;|&#039;/g, "'")
     const [show, setShow] = useState(false)
@@ -79,17 +80,21 @@ const DisplayDetails = (animalDetails) => {
     }
     const contactCheck = () => {
         if (animal.contact.email !== null && animal.contact.phone !== null){
-            setContactInfo(`Email: ${animal.contact.email} Phone Number: ${animal.contact.phone}`)
+            setContactEmail(`Email: ${animal.contact.email}`);
+            setContactNumber(`Phone Number: ${animal.contact.phone}`);
 
         }
         else if(animal.contact.email !== null && animal.contact.phone === null){
-            setContactInfo(`Email: ${animal.contact.email}`)
+            setContactEmail(`Email: ${animal.contact.email}`);
+            setContactNumber("Phone number not provided.")
         }
         else if(animal.contact.email === null && animal.contact.phone !== null){
-            setContactInfo(`Phone Number: ${animal.contact.phone}`)
+            setContactNumber(`Phone Number: ${animal.contact.phone}`);
+            setContactEmail("Email not Provided.")
         }
         else{
-            setContactInfo("No contact information was provided for this animal.")
+            setContactEmail("Email not Provided.");
+            setContactNumber("Phone number not provided.");
         }
     }
     const handleAddFav = () => {
@@ -104,7 +109,8 @@ const DisplayDetails = (animalDetails) => {
                 kids: kidFriendly, 
                 dogs: dogFriendly, 
                 cats: catFriendly, 
-                contact: contactInfo,
+                contactEmail: contactEmail,
+                contactNumber: contactNumber,
                 shelter: animal.organization_id
         }
         const addFav = async () => {
@@ -137,7 +143,7 @@ const DisplayDetails = (animalDetails) => {
             </div>
             <div className="col-md-2">
                 <div className="row">
-                <DisplayContact key={animal.id} contact={contactInfo} />
+                <DisplayContact key={animal.id} contactNumber={contactNumber} contactEmail={contactEmail}/>
                 { user ? (
                 <button onClick={handleAddFav} className="btn btn-primary btn-sm" style={{width:'10rem',textAlign:'center', alignContent:'right', background:"#008000", border: "#008000", marginTop: "1rem"}}>Favorite</button>
                 
