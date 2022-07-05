@@ -15,5 +15,6 @@ class Favorite(models.Model):
     kids = models.CharField(max_length=255)
     dogs = models.CharField(max_length=255)
     cats = models.CharField(max_length=255)
-    contact = models.CharField(max_length=255)
+    contactEmail = models.CharField(max_length=255)
+    contactNumber = models.CharField(max_length=255)
     shelter = models.CharField(max_length=255)
