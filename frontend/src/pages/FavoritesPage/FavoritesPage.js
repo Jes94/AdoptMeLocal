@@ -5,7 +5,7 @@ import "./FavoritesPage.css"
 
 const FavoritesPage = ({getShelterInfo}) => {
     return (
-        <div className="container">
+        <div className="container1">
             <h4>Favorites</h4>
             <div className="favoritesContainer"><FavoriteList getShelterInfo={getShelterInfo}/></div>
         </div>

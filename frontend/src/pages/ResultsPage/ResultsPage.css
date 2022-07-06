@@ -1,7 +1,7 @@
 .resultsContainer{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px 10px;
+    grid-template-columns: repeat(4, 18rem);
+    gap: 1rem 1rem;
     grid-auto-rows: minmax(100px, auto);
     padding-bottom: 50px;
     margin-left: 3rem;
