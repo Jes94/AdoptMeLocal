@@ -1,6 +1,7 @@
 // General Imports
 import { useMemo, useState, useEffect, useRef } from "react";
 import axios from "axios";
+import './DirectionsPage.css';
 
 // Google Maps Imports
 import { GoogleMap, useLoadScript, Autocomplete, DirectionsRenderer } from "@react-google-maps/api";
@@ -8,8 +9,6 @@ import { GoogleMap, useLoadScript, Autocomplete, DirectionsRenderer } from "@rea
 // API Keys
 import { GKEY } from "../../local_google_key";
 
-// Style Import
-import './DirectionsPage.css';
 
 
 const DirectionsPage = ({ shelterInfo }) => {
@@ -20,11 +19,9 @@ const DirectionsPage = ({ shelterInfo }) => {
     const shelterCity = "%20" + shelterInfo.address.city.replace(/\s/g, "%20")
     const shelterState = "%20" + shelterInfo.address.state.replace(/\s/g, "%20")
     const [map, setMap] = useState(/** @type google.maps.Map */ (null))
-    // const [routeSteps, setRouteSteps] = useState([])
     const address = shelterAddress+shelterCity+shelterState
     const origin = useRef()
     const [ libraries ] = useState(['places']);
-// Only update center if lat or lng changes
     const center = useMemo(() =>  ({lat: lat, lng: lng}), [lat,lng])
 
 // Get the Lat & Lon of the Shelter
@@ -49,7 +46,7 @@ const DirectionsPage = ({ shelterInfo }) => {
     }, []);
 
 
-// Get the route
+// Route
     const [directions, setDirections] = useState(null)
     const [distance, setDistance] = useState('')
     const [tripLength, setTripLength] = useState('')
@@ -71,8 +68,6 @@ const DirectionsPage = ({ shelterInfo }) => {
         setTripLength(results.routes[0].legs[0].duration.text)
         // setRouteSteps(results.routes[0].legs[0].steps)
     }
-
-// Check if the map has loaded, and display the correct option depending on the state
 
     if (!isLoaded) return (
     <div>Loading...</div>
@@ -103,17 +98,6 @@ const DirectionsPage = ({ shelterInfo }) => {
                         )}
                     </GoogleMap>
                 </div>
-                {/* {directions ? (
-                routeSteps.map((step, index) => {
-                    return (
-                        <div key={index}>
-                        <p>{step.instructions}   for {step.distance.text}</p>
-                        </div>
-                    )
-                }
-                )):(
-                <div></div>
-                )} */}
         </div>
     )
 }
